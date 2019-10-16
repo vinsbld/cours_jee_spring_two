@@ -3,6 +3,11 @@ package org.sid.entities;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+//un compteEpargne herite de la class Compte
+@Entity
+@DiscriminatorValue("CE")
 public class CompteEpargne extends Compte {
 private double taux;
 
