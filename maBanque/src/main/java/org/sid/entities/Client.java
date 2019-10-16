@@ -3,11 +3,24 @@ package org.sid.entities;
 import java.io.Serializable;
 import java.util.Collection;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+//jpa doit avoir l'annotation Entity
+@Entity
 public class Client implements Serializable {
+//@id specifie l'identifiant, @GeneratedValue genere automatiquement une valeur id
+	@Id @GeneratedValue
 	private long code;
 	private String nom;
 	private String email;
 	// un client peut avoir un ou plusieurs compte "creation d'une collection"
+	/*@OneToMany est une association un à plusieurs, 
+	 * comme c'est une association bedirectionnelle 
+	 * on utilise @OneToMany(mappedBy = "(representé par l'attribut "client")") */
+	@OneToMany(mappedBy = "client",fetch = FetchType.LAZY)
 	private Collection<Compte> comptes;
 
 	public Client() {
