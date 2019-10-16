@@ -25,6 +25,7 @@ public abstract class Compte implements Serializable {
 	private double solde;
 //un compte appartient à un client "rapport * à 1" @ManyToOne
 	@ManyToOne
+	//cle étrangere
 	@JoinColumn(name = "CODE_CLI")
 	private Client client;
 //un compte peut subir une ou plusieurs operations 
