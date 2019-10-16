@@ -2,7 +2,13 @@ package org.sid.entities;
 
 import java.util.Date;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 //un compteCourant herite de la class Compte
+@Entity
+//le nom dans la colonne type de compte sera "CC"
+@DiscriminatorValue("CC")
 public class CompteCourant extends Compte {
 	private double decouvert;
 
