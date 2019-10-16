@@ -4,13 +4,31 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+@Entity
+//@Inheritance = heritage, strategy = il existe plusieurs strategies...
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="TYPE_CPTE", discriminatorType = DiscriminatorType.STRING)
 public abstract class Compte implements Serializable {
+	//pas de @GeneratedValue car il sagit d'un type String
+	@Id
 	private String codeCompte;
 	private Date dateCreation;
 	private double solde;
-//un compte appartient à un client "rapport 1 à 1"
+//un compte appartient à un client "rapport * à 1" @ManyToOne
+	@ManyToOne
+	@JoinColumn(name = "CODE_CLI")
 	private Client client;
 //un compte peut subir une ou plusieurs operations 
+	@OneToMany(mappedBy = "compte")
 	private Collection<Operation> operations;
 
 	public Compte() {
