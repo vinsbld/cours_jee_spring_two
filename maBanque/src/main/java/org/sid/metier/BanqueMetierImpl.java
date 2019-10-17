@@ -12,6 +12,7 @@ import org.sid.entities.Retrait;
 import org.sid.entities.Versement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -73,8 +74,8 @@ public class BanqueMetierImpl implements IBanqueMetier {
 
 	@Override
 	public Page<Operation> listOperation(String codeCpte, int page, int size) {
-		// TODO Auto-generated method stub
-		return null;
+		// retourne la methode OperationRepository de dao 
+		return operationRepository.listOperation(codeCpte, new PageRequest(page, size));
 	}
 
 }
