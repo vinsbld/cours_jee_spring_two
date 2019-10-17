@@ -6,7 +6,9 @@ import java.util.Optional;
 import org.sid.dao.CompteRepository;
 import org.sid.dao.OperationRepository;
 import org.sid.entities.Compte;
+import org.sid.entities.CompteCourant;
 import org.sid.entities.Operation;
+import org.sid.entities.Retrait;
 import org.sid.entities.Versement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -50,7 +52,16 @@ public class BanqueMetierImpl implements IBanqueMetier {
 	@Override
 	public void retirer(String codeCpte, double montant) {
 		// effectuer un retrait
-	
+		Compte cp = consulterCompte(codeCpte);
+		double facilitiesCaisse=0;
+		if(cp instanceof CompteCourant)
+			facilitiesCaisse=((CompteCourant)cp).getDecouvert();
+		if(cp.getSolde()+facilitiesCaisse<montant)
+			throw new RuntimeException("Solde insufisant");
+		Retrait r = new Retrait(new Date(), montant, cp);
+		operationRepository.save(r);
+		cp.setSolde(cp.getSolde()-montant);
+		compteRepository.save(cp);
 	}
 
 	@Override
