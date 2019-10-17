@@ -22,16 +22,17 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class BanqueMetierImpl implements IBanqueMetier {
-	// appel de la couche dao
+
 	@Autowired
 	private CompteRepository compteRepository;
 	@Autowired
 	private OperationRepository operationRepository;
 
+
 	@Override
 	public Compte consulterCompte(String codeCpte) {
 		// pour consulter un compte
-		Optional<Compte> compte = compteRepository.findById(codeCpte);
+		Optional <Compte> compte = compteRepository.findById(codeCpte);
 		Compte cp = null;
 		if (compte.isPresent()) {
 			cp = compte.get();
@@ -39,20 +40,20 @@ public class BanqueMetierImpl implements IBanqueMetier {
 			throw new RuntimeException("Compte introuvable");
 		return cp;
 	}
-
+	// effectuer un versement
 	@Override
 	public void verser(String codeCpte, double montant) {
-		// effectuer un versement
+		
 		Compte cp = consulterCompte(codeCpte);
 		Versement v = new Versement(new Date(), montant, cp);
 		operationRepository.save(v);
 		cp.setSolde(cp.getSolde()+montant);
 		compteRepository.save(cp);
 	}
-
+	// effectuer un retrait
 	@Override
 	public void retirer(String codeCpte, double montant) {
-		// effectuer un retrait
+		
 		Compte cp = consulterCompte(codeCpte);
 		double facilitiesCaisse=0;
 		if(cp instanceof CompteCourant)
@@ -64,17 +65,17 @@ public class BanqueMetierImpl implements IBanqueMetier {
 		cp.setSolde(cp.getSolde()-montant);
 		compteRepository.save(cp);
 	}
-
+	// effectuer un virement de compte à compte
 	@Override
 	public void virement(String codeCpte1, String codeCpte2, double montant) {
-		// effectuer un virement de compte à compte
+		
 		retirer(codeCpte1, montant);
 		verser(codeCpte2, montant);
 	}
-
+	// retourne la methode OperationRepository de dao 
 	@Override
-	public Page<Operation> listOperation(String codeCpte, int page, int size) {
-		// retourne la methode OperationRepository de dao 
+	public Page <Operation> listOperation(String codeCpte, int page, int size) {
+		
 		return operationRepository.listOperation(codeCpte, new PageRequest(page, size));
 	}
 
