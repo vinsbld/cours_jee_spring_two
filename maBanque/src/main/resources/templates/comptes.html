@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html xmls : th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-layout:decorator="template1">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{template1}">
 <head>
-<meta charset="utf-8"/>
+<meta charset="utf-8" />
+<title>Comptes</title>
 <link
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -16,11 +18,14 @@ layout:decorator="template1">
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
 	integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
 	crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="../static/css/style.css"
+	th:href="@{css/style.css}" />
+
 <title>Ma banque</title>
 </head>
 <body>
 	<div layout:fragment="content">
-		<h3>Test</h3>
+		<p>Test</p>
 	</div>
 </body>
 </html>
