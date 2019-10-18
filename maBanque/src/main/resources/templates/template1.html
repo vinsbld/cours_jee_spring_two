@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmls : th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-layout:decorator="template1">
+<html xmls : th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="utf-8"/>
 <link
@@ -8,6 +7,7 @@ layout:decorator="template1">
 	rel="stylesheet"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous" />
+<link rel="stylesheet" type="text/css"} href="../static/css/myStyle.css"/>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
@@ -16,11 +16,25 @@ layout:decorator="template1">
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
 	integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
 	crossorigin="anonymous"></script>
-<title>Ma banque</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<div layout:fragment="content">
-		<h3>Test</h3>
+<header>
+	<div class="navbar navbar-default">
+		<div class="container-fluid">
+			<ul class="nav navbar-nav">
+				<li><a th:herf="@{/operation}">Operations</a></li>
+				<li><a th:herf="@{/comptes}">Comptes</a></li>
+				<li><a th:herf="@{/clients}">Clients</a></li>
+			</ul>
+		</div>
 	</div>
+</header>
+<section layout:fragment="content"></section>
+<footer>
+	<div class="navbar-fixed-top">
+		<small>@L'adresse de votre banque</small>
+	</div>
+</footer>
 </body>
 </html>
