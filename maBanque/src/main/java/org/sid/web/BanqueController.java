@@ -13,6 +13,6 @@ public class BanqueController {
 
 	@RequestMapping("/operations")
 	public String index() {
-		return "compte";
+		return "comptes";
 	}
 }
