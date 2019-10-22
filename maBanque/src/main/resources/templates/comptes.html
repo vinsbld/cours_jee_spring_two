@@ -98,14 +98,15 @@
 								<label th:text="${codeCompte}"></label>
 							</div>
 							<div>
+							<!-- checked="checked"==les cases precochées par defaut -->
 								<input type="radio" name="typeOperation" value="VERS"
 								checked="checked" onchange="document.getElementById('forVirement').style.display='none'"/>
 								<label>Versement</label>
 								<input type="radio" name="typeOperation" value="RETR"
-								checked="checked" onchange="document.getElementById('forVirement').style.display='none'"/>
+								onchange="document.getElementById('forVirement').style.display='none'"/>
 								<label>Retrait</label>
 								<input type="radio" name="typeOperation" value="VIR"
-								checked="checked" onchange="document.getElementById('forVirement').style.display='block'"/>
+								onchange="document.getElementById('forVirement').style.display='block'"/>
 								<label>Virement</label>
 							</div>
 							<div>
