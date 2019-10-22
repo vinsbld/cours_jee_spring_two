@@ -50,6 +50,7 @@ public class BanqueController {
 			
 		} catch (Exception e) {
 			model.addAttribute("error",e);
+			return "redirect:/consulterCompte?codeCompte="+codeCompte+"&error="+e.getMessage();
 		}
 		
 		 return "redirect:/consulterCompte?codeCompte="+codeCompte;
