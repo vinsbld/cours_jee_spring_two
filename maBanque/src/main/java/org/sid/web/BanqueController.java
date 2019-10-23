@@ -29,7 +29,7 @@ public class BanqueController {
 
 		try {
 			Compte cp = banqueMetier.consulterCompte(codeCompte);
-			Page<Operation> pageOperation=banqueMetier.listOperation(codeCompte, 0, 4);
+			Page<Operation> pageOperation=banqueMetier.listOperation(codeCompte, page, size);
 			model.addAttribute("listOperations", pageOperation.getContent());
 			int[] pages=new int [pageOperation.getTotalPages()];
 			model.addAttribute("pages", pages);
